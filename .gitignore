@@ -1,0 +1,10 @@
+*.docx
+*.pages
+*.csv
+/paper/
+/output/
+/data/
+.venv/
+.DS_Store
+/script/map.py
+__pycache__/
