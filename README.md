@@ -13,14 +13,14 @@ https://colab.research.google.com/?hl=ja
 
 
 ```
-.
+このサイトの構造
 ├── docs
 │   └── prompt.md # AIへの命令書
 ├── script
 │   ├── contour.py # コンター図を書くPythonプログラム
 │   └── vertical_profile.py # 鉛直プロファイルを書くPythonプログラム
 │
-├── .gitignore # ↓ここから下は見なくていい↓
+├── .gitignore # ↓ここから下のファイルは見なくていい↓
 ├── .python-version
 ├── README.md 
 ├── pyproject.toml
