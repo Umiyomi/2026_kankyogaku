@@ -3,9 +3,11 @@ import matplotlib.pyplot as plt
 
 from pathlib import Path
 
+PROJECT_ROOT = "/Users/umiyomi/Desktop/CodeWorks/Projects/2026kankyogakuTA"
+
 OFFSHORE_DATA_DIR = "/Users/umiyomi/Desktop/CodeWorks/Projects/2025kankyogakuTA/data/drive-download-20250701T092229Z-1-001"
-MAGAKI_DATA_DIR = "/Users/umiyomi/Desktop/CodeWorks/Projects/2026kankyogakuTA/data/AAQ2026/0621"
-OUTPUT_DIR = "/Users/umiyomi/Desktop/CodeWorks/Projects/2026kankyogakuTA/output/"
+MAGAKI_DATA_DIR = f"{PROJECT_ROOT}/data/AAQ2026/0621"
+OUTPUT_DIR = f"{PROJECT_ROOT}/output"
 
 ST1_LONGITUDE = 135 + 44.3886 / 60
 ST2_LONGITUDE = 135 + 44.2118 / 60
