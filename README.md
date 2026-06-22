@@ -22,25 +22,24 @@
 
 https://colab.research.google.com/
 
-### AIへの命令書
+### AIへの命令書の例
 
-`docs/prompt.md`
+[`docs/prompt.md`](./docs/prompt.md)
 
 AIにどのような指示を出せばよいかを書いてあります。
 
-### 完成例
+### プログラム完成例
 
 `script/`
 
-* `contour.py`
+* [`contour.py`](./script/contour.py)
 
   * コンター図を描くプログラム
-* `vertical_profile.py`
+* [`vertical_profile.py`](./script/vertical_profile.py)
 
   * 鉛直プロファイルを描くプログラム
 
 ---
-
 ## 実習の流れ
 
 ### Step 1
