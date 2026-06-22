@@ -6,36 +6,34 @@ from pathlib import Path
 from matplotlib.colors import Normalize
 from matplotlib.colors import BoundaryNorm
 
-DATA_DIR = "/Users/umiyomi/Desktop/CodeWorks/Projects/2025kankyogakuTA/data/drive-download-20250701T092229Z-1-001"
-MAGAKI_DATA_DIR = "/Users/umiyomi/Desktop/CodeWorks/Projects/2025kankyogakuTA/小浜湾マガキ幼生調査データ（口先生）"
-OUTPUT_DIR = "/Users/umiyomi/Desktop/CodeWorks/Projects/2026kankyogakuTA/output/test"
-MAGAKI_SAVE_DIR = f"{OUTPUT_DIR}/magaki/contour"
-
-# SAVE_DIR = "/Users/ishiisubaru/Desktop/2025kankyogakuTA/test_contour"
-# MAGAKI_SAVE_DIR = "/Users/ishiisubaru/Desktop/2025kankyogakuTA/2025magaki/contour"
+OFFSHORE_DATA_DIR = "/Users/umiyomi/Desktop/CodeWorks/Projects/2025kankyogakuTA/data/drive-download-20250701T092229Z-1-001"
+MAGAKI_DATA_DIR = "/Users/umiyomi/Desktop/CodeWorks/Projects/2026kankyogakuTA/data/AAQ2026/0621"
+OUTPUT_DIR = "/Users/umiyomi/Desktop/CodeWorks/Projects/2026kankyogakuTA/output/"
 
 ST1_LONGITUDE = 135 + 44.3886 / 60
 ST2_LONGITUDE = 135 + 44.2118 / 60
 ST3_LONGITUDE = 135 + 44.1365 / 60
 
-DAY1_ST1_PATH = f"{DATA_DIR}/0610130624_AAQ177_SNo0636.csv"
-DAY1_ST2_PATH = f"{DATA_DIR}/0610140740_AAQ177_SNo0636.csv"
-DAY1_ST3_PATH = f"{DATA_DIR}/0610150715_AAQ177_SNo0636.csv"
+# 若狭湾調査データ(2025年版)
+DAY1_ST1_PATH = f"{OFFSHORE_DATA_DIR}/0610130624_AAQ177_SNo0636.csv"
+DAY1_ST2_PATH = f"{OFFSHORE_DATA_DIR}/0610140740_AAQ177_SNo0636.csv"
+DAY1_ST3_PATH = f"{OFFSHORE_DATA_DIR}/0610150715_AAQ177_SNo0636.csv"
 
-DAY2A_ST1_PATH = f"{DATA_DIR}/0611132450_AAQ177_SNo0636.csv"
-DAY2A_ST2_PATH = f"{DATA_DIR}/0611143259_AAQ177_SNo0636.csv"
-DAY2A_ST3_PATH = f"{DATA_DIR}/0611153435_AAQ177_SNo0636.csv"
+DAY2A_ST1_PATH = f"{OFFSHORE_DATA_DIR}/0611132450_AAQ177_SNo0636.csv"
+DAY2A_ST2_PATH = f"{OFFSHORE_DATA_DIR}/0611143259_AAQ177_SNo0636.csv"
+DAY2A_ST3_PATH = f"{OFFSHORE_DATA_DIR}/0611153435_AAQ177_SNo0636.csv"
 
-DAY2B_ST1_PATH = f"{DATA_DIR}/0611132815_AAQ177_SNo0636.csv"
-DAY2B_ST2_PATH = f"{DATA_DIR}/0611143522_AAQ177_SNo0636.csv"
-DAY2B_ST3_PATH = f"{DATA_DIR}/0611153710_AAQ177_SNo0636.csv"
+DAY2B_ST1_PATH = f"{OFFSHORE_DATA_DIR}/0611132815_AAQ177_SNo0636.csv"
+DAY2B_ST2_PATH = f"{OFFSHORE_DATA_DIR}/0611143522_AAQ177_SNo0636.csv"
+DAY2B_ST3_PATH = f"{OFFSHORE_DATA_DIR}/0611153710_AAQ177_SNo0636.csv"
 
-MAGAKI_ST1_PATH = f"{MAGAKI_DATA_DIR}/0705112023_AAQ177_SNo0636.csv"
-MAGAKI_ST2_PATH = f"{MAGAKI_DATA_DIR}/0705112839_AAQ177_SNo0636.csv"
-MAGAKI_ST3_PATH = f"{MAGAKI_DATA_DIR}/0705113614_AAQ177_SNo0636.csv"
-MAGAKI_ST4_PATH = f"{MAGAKI_DATA_DIR}/0705114050_AAQ177_SNo0636.csv"
-MAGAKI_ST5_PATH = f"{MAGAKI_DATA_DIR}/0705115243_AAQ177_SNo0636.csv"
-MAGAKI_ST6_PATH = f"{MAGAKI_DATA_DIR}/0705115818_AAQ177_SNo0636.csv"
+# マガキ調査データ(2026年版)
+MAGAKI_ST1_PATH = f"{MAGAKI_DATA_DIR}/0621090317_AAQ177_SNo0636.csv"
+MAGAKI_ST2_PATH = f"{MAGAKI_DATA_DIR}/0621090953_AAQ177_SNo0636.csv"
+MAGAKI_ST3_PATH = f"{MAGAKI_DATA_DIR}/0621092021_AAQ177_SNo0636.csv"
+MAGAKI_ST4_PATH = f"{MAGAKI_DATA_DIR}/0621092708_AAQ177_SNo0636.csv"
+MAGAKI_ST5_PATH = f"{MAGAKI_DATA_DIR}/0621094533_AAQ177_SNo0636.csv"
+MAGAKI_ST6_PATH = f"{MAGAKI_DATA_DIR}/0621095111_AAQ177_SNo0636.csv"
 
 DAY1_DATA_DICT = {
     "St1": (DAY1_ST1_PATH, ST1_LONGITUDE),
@@ -65,14 +63,14 @@ MAGAKI_DATA_DICT = {
 }
 
 # ===== 演習設定（主にここを変更する） =====
-ACTIVE_DATASET = "MAGAKI"      # "DAY1", "DAY2", "DAY2B", "MAGAKI" から選ぶ
-USE_AUTO_LIMITS = False        # True: データの min/max を軸範囲に使う
+ACTIVE_DATASET = "DAY1"      # "DAY1", "DAY2", "DAY2B", "MAGAKI" から選ぶ
+USE_AUTO_LIMITS = True        # True: データの min/max を軸範囲に使う
 
 DATASET_SETTINGS = {
     "DAY1": {
         "data_dict": DAY1_DATA_DICT,
         "output_csv": "concated_day1_contour_df.csv",
-        "save_dir": OUTPUT_DIR,
+        "save_dir": OUTPUT_DIR + "/offshore_day1/contour",
         "depthmax": 6,
         "temp_vmin": 19,    "temp_vmax": 22,
         "sal_vmin": 32,     "sal_vmax": 35,
@@ -80,12 +78,17 @@ DATASET_SETTINGS = {
         "temp_title": "temp-day1_contour",
         "sal_title": "sal-day1_contour",
         "chl_title": "chl-day1_contour",
+        "temp_level_step": 0.2,
+        "sal_level_step": 0.2,
+        "chl_level_step": 0.2,
+        "chl_fine_sub_step": 0.1,
+        "chl_fine_coarse_step": 4.0,
         "chl_fine_levels": False,
     },
     "DAY2": {
         "data_dict": DAY2_DATA_DICT,
         "output_csv": "concated_day2_contour_df.csv",
-        "save_dir": OUTPUT_DIR,
+        "save_dir": OUTPUT_DIR + "/offshore_day2/contour",
         "depthmax": 6,
         "temp_vmin": 19,    "temp_vmax": 22,
         "sal_vmin": 32,     "sal_vmax": 35,
@@ -93,12 +96,17 @@ DATASET_SETTINGS = {
         "temp_title": "temp-day2_contour",
         "sal_title": "sal-day2_contour",
         "chl_title": "chl-day2_contour",
+        "temp_level_step": 0.2,
+        "sal_level_step": 0.2,
+        "chl_level_step": 0.2,
+        "chl_fine_sub_step": 0.1,
+        "chl_fine_coarse_step": 4.0,
         "chl_fine_levels": False,
     },
     "DAY2B": {
         "data_dict": DAY2B_DATA_DICT,
         "output_csv": "concated_day2b_contour_df.csv",
-        "save_dir": OUTPUT_DIR,
+        "save_dir": OUTPUT_DIR + "/offshore_day2b/contour",
         "depthmax": 6,
         "temp_vmin": 19,    "temp_vmax": 22,
         "sal_vmin": 32,     "sal_vmax": 35,
@@ -106,28 +114,32 @@ DATASET_SETTINGS = {
         "temp_title": "temp-day2b_contour",
         "sal_title": "sal-day2b_contour",
         "chl_title": "chl-day2b_contour",
+        "temp_level_step": 0.2,
+        "sal_level_step": 0.2,
+        "chl_level_step": 0.2,
+        "chl_fine_sub_step": 0.1,
+        "chl_fine_coarse_step": 4.0,
         "chl_fine_levels": False,
     },
     "MAGAKI": {
         "data_dict": MAGAKI_DATA_DICT,
         "output_csv": "concated_magaki_contour_df.csv",
-        "save_dir": MAGAKI_SAVE_DIR,
+        "save_dir": OUTPUT_DIR + "/magaki/contour",
         "depthmax": 6,
         "temp_vmin": 25.0,  "temp_vmax": 30.0,
         "sal_vmin": 30.5,   "sal_vmax": 34,
         "chl_vmin": 1.5,    "chl_vmax": 40,
-        "temp_title": "temp-magaki20250705_ex_contour",
-        "sal_title": "sal-magaki20250705_ex_contour",
-        "chl_title": "chl-magaki20250705_ex_contour",
-        "chl_fine_levels": True,
+        "temp_title": "temp-magaki_contour",
+        "sal_title": "sal-magaki_contour",
+        "chl_title": "chl-magaki_contour",
+        "temp_level_step": 0.2,
+        "sal_level_step": 0.2,
+        "chl_level_step": 0.2,
+        "chl_fine_sub_step": 0.1,
+        "chl_fine_coarse_step": 4.0,
+        "chl_fine_levels": False,
     },
 }
-
-
-def test():
-    df = load_and_format_data(csv_file_path=MAGAKI_ST1_PATH, station="St1", longitude=6.0)
-    print(df)
-
 
 def load_and_format_data(csv_file_path: str, station: str, longitude: float) -> pd.DataFrame:
 
@@ -175,6 +187,9 @@ def draw_contour_and_savefig(
     vmax: float,
     depthmax: float,
     cmap: str = "jet",
+    level_step: float = 0.2,
+    fine_sub_step: float = 0.1,
+    fine_coarse_step: float = 4.0,
     fine_levels: bool = False,
 ) -> None:
     x = df[x_col].to_numpy()
@@ -182,11 +197,12 @@ def draw_contour_and_savefig(
     z = df[value_col].to_numpy()
 
     if fine_levels:
-        levels = np.arange(vmin, vmax + 4.0, 4.0)
-        levels_sub = np.arange(0, 1.5, 0.1)
-        levels = np.concatenate([levels_sub, levels])
+        # 低濃度域は fine_sub_step 刻み、vmin 以降は fine_coarse_step 刻み
+        levels_sub = np.arange(0, vmin, fine_sub_step)
+        levels_coarse = np.arange(vmin, vmax + fine_coarse_step, fine_coarse_step)
+        levels = np.concatenate([levels_sub, levels_coarse])
     else:
-        levels = np.arange(vmin, vmax + 0.1, 0.2)
+        levels = np.arange(vmin, vmax + level_step / 2, level_step)
 
     print(levels)
 
@@ -244,7 +260,8 @@ def main_process():
 
     settings = DATASET_SETTINGS[ACTIVE_DATASET]
     concated_df = concat_station_data(data_dict=settings["data_dict"])
-    concated_df.to_csv(f"{OUTPUT_DIR}/{settings['output_csv']}")
+    Path(settings["save_dir"]).mkdir(parents=True, exist_ok=True)
+    concated_df.to_csv(f"{settings['save_dir']}/{settings['output_csv']}")
 
     print(concated_df.min())
     print(concated_df.max())
@@ -268,6 +285,7 @@ def main_process():
         vmax=temp_vmax,
         depthmax=settings["depthmax"],
         cmap="jet",
+        level_step=settings["temp_level_step"],
         fine_levels=False,
     )
 
@@ -290,6 +308,7 @@ def main_process():
         vmax=sal_vmax,
         depthmax=settings["depthmax"],
         cmap="jet",
+        level_step=settings["sal_level_step"],
         fine_levels=False,
     )
 
@@ -312,6 +331,9 @@ def main_process():
         vmax=chl_vmax,
         depthmax=settings["depthmax"],
         cmap="jet",
+        level_step=settings["chl_level_step"],
+        fine_sub_step=settings["chl_fine_sub_step"],
+        fine_coarse_step=settings["chl_fine_coarse_step"],
         fine_levels=settings["chl_fine_levels"],
     )
 
