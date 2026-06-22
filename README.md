@@ -13,7 +13,7 @@
 │   └── prompt.md # AIへの命令書
 ├── script
 │   ├── contour.py # コンター図を書くPythonプログラム
-│   └── vertical_pofile.py # 鉛直プロファイルを書くPythonプログラム
+│   └── vertical_profile.py # 鉛直プロファイルを書くPythonプログラム
 │
 ├── .gitignore # ↓ここから下は見なくていい↓
 ├── .python-version
