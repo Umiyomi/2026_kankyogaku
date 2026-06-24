@@ -8,28 +8,23 @@ from matplotlib.colors import BoundaryNorm
 
 PROJECT_ROOT = "/content/drive/MyDrive/kankyogaku2026"
 
-OFFSHORE_DATA_DIR = f"{PROJECT_ROOT}/data/offshore"
+WAKASA_DATA_DIR = f"{PROJECT_ROOT}/data/wakasa/20260624"
 MAGAKI_DATA_DIR = f"{PROJECT_ROOT}/data/AAQ2026/0621"
 OUTPUT_DIR = f"{PROJECT_ROOT}/output"
 
-ST1_LONGITUDE = 135 + 44.3886 / 60
-ST2_LONGITUDE = 135 + 44.2118 / 60
-ST3_LONGITUDE = 135 + 44.1365 / 60
+# 20260624
+ST1_LATITUDE = 35 + 30.496 / 60
+ST2_LATITUDE = 35 + 31.161 / 60
+ST3_LATITUDE = 35 + 31.848 / 60
+ST4_LATITUDE = 35 + 32.535 / 60
 
-# 若狭湾調査データ(2025年版)
-DAY1_ST1_PATH = f"{OFFSHORE_DATA_DIR}/0610130624_AAQ177_SNo0636.csv"
-DAY1_ST2_PATH = f"{OFFSHORE_DATA_DIR}/0610140740_AAQ177_SNo0636.csv"
-DAY1_ST3_PATH = f"{OFFSHORE_DATA_DIR}/0610150715_AAQ177_SNo0636.csv"
+# wakasa20260624調査データ
+WAKASA_ST1_PATH = f"{WAKASA_DATA_DIR}/202606241429_ASTD152-ALC-R02_0184_142943.Csv"
+WAKASA_ST2_PATH = f"{WAKASA_DATA_DIR}/202606241417_ASTD152-ALC-R02_0184_141756.Csv"
+WAKASA_ST3_PATH = f"{WAKASA_DATA_DIR}/202606241356_ASTD152-ALC-R02_0184_135631.Csv"
+WAKASA_ST4_PATH = f"{WAKASA_DATA_DIR}/202606241340_ASTD152-ALC-R02_0184_134017.Csv"
 
-DAY2A_ST1_PATH = f"{OFFSHORE_DATA_DIR}/0611132450_AAQ177_SNo0636.csv"
-DAY2A_ST2_PATH = f"{OFFSHORE_DATA_DIR}/0611143259_AAQ177_SNo0636.csv"
-DAY2A_ST3_PATH = f"{OFFSHORE_DATA_DIR}/0611153435_AAQ177_SNo0636.csv"
-
-DAY2B_ST1_PATH = f"{OFFSHORE_DATA_DIR}/0611132815_AAQ177_SNo0636.csv"
-DAY2B_ST2_PATH = f"{OFFSHORE_DATA_DIR}/0611143522_AAQ177_SNo0636.csv"
-DAY2B_ST3_PATH = f"{OFFSHORE_DATA_DIR}/0611153710_AAQ177_SNo0636.csv"
-
-# マガキ調査データ(2026年版)
+# magaki20260621調査データ
 MAGAKI_ST1_PATH = f"{MAGAKI_DATA_DIR}/0621090317_AAQ177_SNo0636.csv"
 MAGAKI_ST2_PATH = f"{MAGAKI_DATA_DIR}/0621090953_AAQ177_SNo0636.csv"
 MAGAKI_ST3_PATH = f"{MAGAKI_DATA_DIR}/0621092021_AAQ177_SNo0636.csv"
@@ -37,22 +32,11 @@ MAGAKI_ST4_PATH = f"{MAGAKI_DATA_DIR}/0621092708_AAQ177_SNo0636.csv"
 MAGAKI_ST5_PATH = f"{MAGAKI_DATA_DIR}/0621094533_AAQ177_SNo0636.csv"
 MAGAKI_ST6_PATH = f"{MAGAKI_DATA_DIR}/0621095111_AAQ177_SNo0636.csv"
 
-DAY1_DATA_DICT = {
-    "St1": (DAY1_ST1_PATH, ST1_LONGITUDE),
-    "St2": (DAY1_ST2_PATH, ST2_LONGITUDE),
-    "St3": (DAY1_ST3_PATH, ST3_LONGITUDE)
-}
-
-DAY2_DATA_DICT = {
-    "St1": (DAY2A_ST1_PATH, ST1_LONGITUDE),
-    "St2": (DAY2A_ST2_PATH, ST2_LONGITUDE),
-    "St3": (DAY2A_ST3_PATH, ST3_LONGITUDE)
-}
-
-DAY2B_DATA_DICT = {
-    "St1": (DAY2B_ST1_PATH, ST1_LONGITUDE),
-    "St2": (DAY2B_ST2_PATH, ST2_LONGITUDE),
-    "St3": (DAY2B_ST3_PATH, ST3_LONGITUDE)
+WAKASA_DATA_DICT = {
+    "St1": (WAKASA_ST1_PATH, ST1_LATITUDE),
+    "St2": (WAKASA_ST2_PATH, ST2_LATITUDE),
+    "St3": (WAKASA_ST3_PATH, ST3_LATITUDE),
+    "St4": (WAKASA_ST4_PATH, ST4_LATITUDE)
 }
 
 MAGAKI_DATA_DICT = {
@@ -65,57 +49,21 @@ MAGAKI_DATA_DICT = {
 }
 
 # ===== 演習設定（主にここを変更する） =====
-ACTIVE_DATASET = "DAY1"      # "DAY1", "DAY2", "DAY2B", "MAGAKI" から選ぶ
-USE_AUTO_LIMITS = True        # True: データの min/max を軸範囲に使う
+ACTIVE_DATASET = "WAKASA"      # "WAKASA", "MAGAKI" から選ぶ
+USE_AUTO_LIMITS = False        # True: データの min/max を軸範囲に使う
 
 DATASET_SETTINGS = {
-    "DAY1": {
-        "data_dict": DAY1_DATA_DICT,
-        "output_csv": "concated_day1_contour_df.csv",
-        "save_dir": OUTPUT_DIR + "/offshore_day1/contour",
-        "depthmax": 6,
-        "temp_vmin": 19,    "temp_vmax": 22,
-        "sal_vmin": 32,     "sal_vmax": 35,
-        "chl_vmin": 0.5,    "chl_vmax": 4.0,
-        "temp_title": "temp-day1_contour",
-        "sal_title": "sal-day1_contour",
-        "chl_title": "chl-day1_contour",
-        "temp_level_step": 0.2,
-        "sal_level_step": 0.2,
-        "chl_level_step": 0.2,
-        "chl_fine_sub_step": 0.1,
-        "chl_fine_coarse_step": 4.0,
-        "chl_fine_levels": False,
-    },
-    "DAY2": {
-        "data_dict": DAY2_DATA_DICT,
-        "output_csv": "concated_day2_contour_df.csv",
-        "save_dir": OUTPUT_DIR + "/offshore_day2/contour",
-        "depthmax": 6,
-        "temp_vmin": 19,    "temp_vmax": 22,
-        "sal_vmin": 32,     "sal_vmax": 35,
-        "chl_vmin": 0.5,    "chl_vmax": 4.0,
-        "temp_title": "temp-day2_contour",
-        "sal_title": "sal-day2_contour",
-        "chl_title": "chl-day2_contour",
-        "temp_level_step": 0.2,
-        "sal_level_step": 0.2,
-        "chl_level_step": 0.2,
-        "chl_fine_sub_step": 0.1,
-        "chl_fine_coarse_step": 4.0,
-        "chl_fine_levels": False,
-    },
-    "DAY2B": {
-        "data_dict": DAY2B_DATA_DICT,
-        "output_csv": "concated_day2b_contour_df.csv",
-        "save_dir": OUTPUT_DIR + "/offshore_day2b/contour",
-        "depthmax": 6,
-        "temp_vmin": 19,    "temp_vmax": 22,
-        "sal_vmin": 32,     "sal_vmax": 35,
-        "chl_vmin": 0.5,    "chl_vmax": 4.0,
-        "temp_title": "temp-day2b_contour",
-        "sal_title": "sal-day2b_contour",
-        "chl_title": "chl-day2b_contour",
+    "WAKASA": {
+        "data_dict": WAKASA_DATA_DICT,
+        "output_csv": "concated_wakasa_contour_df.csv",
+        "save_dir": OUTPUT_DIR + "/wakasa/contour",
+        "depthmax": 30,
+        "temp_vmin": 22.5,  "temp_vmax": 25.0,
+        "sal_vmin": 30.5,   "sal_vmax": 34,
+        "chl_vmin": 0,      "chl_vmax": 5.0,
+        "temp_title": "temp-wakasa_contour",
+        "sal_title": "sal-wakasa_contour",
+        "chl_title": "chl-wakasa_contour",
         "temp_level_step": 0.2,
         "sal_level_step": 0.2,
         "chl_level_step": 0.2,
