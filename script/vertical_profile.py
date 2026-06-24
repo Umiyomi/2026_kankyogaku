@@ -5,7 +5,7 @@ from pathlib import Path
 
 PROJECT_ROOT = "/Users/umiyomi/Desktop/CodeWorks/Projects/2026kankyogakuTA"
 
-WAKASA_DATA_DIR = "/Users/umiyomi/Desktop/CodeWorks/Projects/2026kankyogakuTA/data/20260624_雲龍丸乗船データ"
+WAKASA_DATA_DIR = f"{PROJECT_ROOT}/data/20260624_雲龍丸乗船データ"
 MAGAKI_DATA_DIR = f"{PROJECT_ROOT}/data/AAQ2026/0621"
 OUTPUT_DIR = f"{PROJECT_ROOT}/output"
 
