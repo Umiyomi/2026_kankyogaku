@@ -48,6 +48,8 @@ MAGAKI_DATA_DICT = {
 # ===== 演習設定（主にここを変更する） =====
 ACTIVE_DATASET = "WAKASA"       # "WAKASA", "MAGAKI" から選ぶ
 USE_AUTO_LIMITS = False        # True: データの min/max を軸範囲に使う
+ACTIVE_DATASET = "WAKASA"       # "WAKASA", "MAGAKI" から選ぶ
+USE_AUTO_LIMITS = False        # True: データの min/max を軸範囲に使う
 
 DATASET_SETTINGS = {
     "WAKASA": {
