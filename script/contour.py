@@ -8,8 +8,8 @@ from matplotlib.colors import BoundaryNorm
 
 PROJECT_ROOT = "/content/drive/MyDrive/kankyogaku2026"
 
-WAKASA_DATA_DIR = f"{PROJECT_ROOT}/data/wakasa/20260624"
-MAGAKI_DATA_DIR = f"{PROJECT_ROOT}/data/AAQ2026/0621"
+WAKASA_DATA_DIR = f"{PROJECT_ROOT}/data/wakasa"
+MAGAKI_DATA_DIR = f"{PROJECT_ROOT}/data/magaki"
 OUTPUT_DIR = f"{PROJECT_ROOT}/output"
 
 # 20260624
