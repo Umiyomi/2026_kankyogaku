@@ -68,7 +68,7 @@ DATASET_SETTINGS = {
         "data_dict": MAGAKI_DATA_DICT,
         "output_csv": "concated_magaki_df.csv",
         "save_dir": OUTPUT_DIR + "/magaki/profile",
-        "depthmax": 6,
+        "depthmax": 30,
         "temp_vmin": 25.0,  "temp_vmax": 30.0,
         "sal_vmin": 30.5,   "sal_vmax": 34,
         "chl_vmin": 0,      "chl_vmax": 46.0,
