@@ -90,7 +90,7 @@ def load_and_format_data(csv_file_path: str, station: str, longitude: float) -> 
 
     df = pd.read_csv(
         csv_file_path, skiprows=skiprows + 2, encoding="shift-jis",
-        usecols=[0, 1, 2, 8, 9, 12], names=["depth(m)", "temp(℃)", "sal", "chl-a(μg/l)", "turb(FTU)", "DO(%)"],
+        usecols=[0, 1, 2, 8], names=["depth(m)", "temp(℃)", "sal", "chl-a(μg/l)"],
         header=None
     )
     df["station"] = station
