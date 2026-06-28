@@ -8,7 +8,7 @@
 
 1. Google Drive の`マイドライブ`に観測データをアップロードする
 2. Google Colab に`ノートブック`を作成する
-3. プログラムをコピペできる講義資料を用いてデータサイエンスの基礎を学ぶ
+3. プログラムをコピペ・実行しながらデータサイエンスの基礎を学ぶ
 4. 海洋観測データを可視化する
 
 という流れで進めます。
@@ -33,11 +33,6 @@ https://colab.research.google.com/
 [`03_introducting_draw_graph.md`](./docs/03_introducting_draw_graph.md)
 [`04_requirements_definition.md`](./docs/04_requirements_definition.md)
 
-### AIへの命令書の例
-
-[`docs/prompt.md`](./docs/prompt.md)
-
-AIにどのような指示を出せばよいかを書いてあります。
 
 ### プログラム完成例
 
@@ -47,6 +42,11 @@ AIにどのような指示を出せばよいかを書いてあります。
 [`vertical_profile.py`](./script/vertical_profile.py)
 鉛直プロファイルを描くプログラム
 
+### AIへの指示書の例
+
+[`prompt.md`](./docs/prompt.md)
+AIにプログラムを書かせる際の命令(プロンプト)の例です。
+プログラム完成例に近いコードを出力させるための全ての情報が記載されています。
 
 ---
 

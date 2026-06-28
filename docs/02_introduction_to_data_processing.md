@@ -50,7 +50,7 @@ print(df)
 ```
 ParserError: Error tokenizing data. C error: Expected 1 fields in line 4, saw 2
 ```
-これは”CSVの列数が行によって揃っていない”ときに出るエラーです。  
+これは`CSVの列数が行によって揃っていない`ときに出るエラーです。  
 どういうことか、元のデータファイルを見てみましょう。
 ```
 // AAQ-RINKO Series Data Processing Software
