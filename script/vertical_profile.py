@@ -77,7 +77,7 @@ DATASET_SETTINGS = {
     "WAKASA_0624": {
         "data_dict": WAKASA_0624_DATA_DICT,
         "output_csv": "concated_wakasa_0624_profile_df.csv",
-        "save_dir": OUTPUT_DIR + "/wakasa/contour",
+        "save_dir": OUTPUT_DIR + "/wakasa/profile",
         "depthmax": 30,
         "temp_vmin": 21.0,  "temp_vmax": 25.0,
         "sal_vmin": 29.5,   "sal_vmax": 34.3,
@@ -95,7 +95,7 @@ DATASET_SETTINGS = {
     "MAGAKI_0621": {
         "data_dict": MAGAKI_0621_DATA_DICT,
         "output_csv": "concated_magaki_0621_profile_df.csv",
-        "save_dir": OUTPUT_DIR + "/magaki/contour",
+        "save_dir": OUTPUT_DIR + "/magaki/profile",
         "depthmax": 30,
         "temp_vmin": 21.0,  "temp_vmax": 25.0,
         "sal_vmin": 29.5,   "sal_vmax": 34.3,
@@ -113,7 +113,7 @@ DATASET_SETTINGS = {
     "MAGAKI_0627": {
         "data_dict": MAGAKI_0627_DATA_DICT,
         "output_csv": "concated_magaki_0627_profile_df.csv",
-        "save_dir": OUTPUT_DIR + "/magaki/contour",
+        "save_dir": OUTPUT_DIR + "/magaki/profile",
         "depthmax": 30,
         "temp_vmin": 21.0,  "temp_vmax": 25.0,
         "sal_vmin": 29.5,   "sal_vmax": 34.3,
