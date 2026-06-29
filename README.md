@@ -28,10 +28,10 @@ https://colab.research.google.com/
 ### テキスト
 本講義で使うテキストです  
 コピペ可能なプログラムが付属します
-[`01_introduction_to_programming.md`](./docs/01_introduction_to_programming.md)
-[`02_introduction_to_data_processing.md`](./docs/02_introduction_to_data_processing.md)
-[`03_introducting_draw_graph.md`](./docs/03_introducting_draw_graph.md)
-[`04_requirements_definition.md`](./docs/04_requirements_definition.md)
+[`01_introduction_to_programming.md`](./docs/01_introduction_to_programming.md)  
+[`02_introduction_to_data_processing.md`](./docs/02_introduction_to_data_processing.md)  
+[`03_introducting_draw_graph.md`](./docs/03_introducting_draw_graph.md)  
+[`04_requirements_definition.md`](./docs/04_requirements_definition.md)  
 
 
 ### プログラム完成例
