@@ -78,16 +78,17 @@ DATASET_SETTINGS = {
         "depthmax": 30,
         "temp_vmin": 21.0,  "temp_vmax": 25.0,
         "sal_vmin": 29.5,   "sal_vmax": 34.3,
-        "chl_vmin": 0,      "chl_vmax": 10.0,
+        "chl_vmin": 0.1,      "chl_vmax": 10.5,
         "temp_title": "temp-wakasa_0624_contour",
         "sal_title": "sal-wakasa_0624_contour",
         "chl_title": "chl-wakasa_0624_contour",
         "temp_level_step": 0.2,
         "sal_level_step": 0.2,
         "chl_level_step": 0.2,
-        "chl_fine_sub_step": 0.1,
-        "chl_fine_coarse_step": 4.0,
-        "chl_fine_levels": False,
+        "chl_fine_sub_step": 0.2,
+        "chl_fine_coarse_step": 2.0,
+        "chl_fine_threshold": 5.0,
+        "chl_fine_levels": True,
     },
     "MAGAKI_0621": {
         "data_dict": MAGAKI_0621_DATA_DICT,
@@ -96,16 +97,17 @@ DATASET_SETTINGS = {
         "depthmax": 30,
         "temp_vmin": 21.0,  "temp_vmax": 25.0,
         "sal_vmin": 29.5,   "sal_vmax": 34.3,
-        "chl_vmin": 0,      "chl_vmax": 10.0,
+        "chl_vmin": 0.1,      "chl_vmax": 10.5,
         "temp_title": "temp-magaki_0621_contour",
         "sal_title": "sal-magaki_0621_contour",
         "chl_title": "chl-magaki_0621_contour",
         "temp_level_step": 0.2,
         "sal_level_step": 0.2,
         "chl_level_step": 0.2,
-        "chl_fine_sub_step": 0.1,
-        "chl_fine_coarse_step": 4.0,
-        "chl_fine_levels": False,
+        "chl_fine_sub_step": 0.2,
+        "chl_fine_coarse_step": 2.0,
+        "chl_fine_threshold": 5.0,
+        "chl_fine_levels": True,
     },
     "MAGAKI_0627": {
         "data_dict": MAGAKI_0627_DATA_DICT,
@@ -114,16 +116,17 @@ DATASET_SETTINGS = {
         "depthmax": 30,
         "temp_vmin": 21.0,  "temp_vmax": 25.0,
         "sal_vmin": 29.5,   "sal_vmax": 34.3,
-        "chl_vmin": 0,      "chl_vmax": 10.0,
+        "chl_vmin": 0.1,      "chl_vmax": 10.5,
         "temp_title": "temp-magaki_0627_contour",
         "sal_title": "sal-magaki_0627_contour",
         "chl_title": "chl-magaki_0627_contour",
         "temp_level_step": 0.2,
         "sal_level_step": 0.2,
         "chl_level_step": 0.2,
-        "chl_fine_sub_step": 0.1,
-        "chl_fine_coarse_step": 4.0,
-        "chl_fine_levels": False,
+        "chl_fine_sub_step": 0.2,
+        "chl_fine_coarse_step": 2.0,
+        "chl_fine_threshold": 5.0,
+        "chl_fine_levels": True,
     },
 }
 
@@ -175,7 +178,8 @@ def draw_contour_and_savefig(
     cmap: str = "jet",
     level_step: float = 0.2,
     fine_sub_step: float = 0.1,
-    fine_coarse_step: float = 4.0,
+    fine_coarse_step: float = 1.0,
+    fine_threshold: float = 5.0,
     fine_levels: bool = False,
     ) -> None:
     x = df[x_col].to_numpy()
@@ -183,9 +187,13 @@ def draw_contour_and_savefig(
     z = df[value_col].to_numpy()
 
     if fine_levels:
-        # 低濃度域は fine_sub_step 刻み、vmin 以降は fine_coarse_step 刻み
-        levels_sub = np.arange(0, vmin, fine_sub_step)
-        levels_coarse = np.arange(vmin, vmax + fine_coarse_step, fine_coarse_step)
+        # vmin〜threshold までは fine_sub_step 刻み、以降は fine_coarse_step 刻み
+        levels_sub = np.arange(vmin, fine_threshold + fine_sub_step / 2, fine_sub_step)
+        levels_coarse = np.arange(
+            fine_threshold + fine_coarse_step, vmax, fine_coarse_step
+        )
+        if len(levels_coarse) == 0 or levels_coarse[-1] < vmax:
+            levels_coarse = np.append(levels_coarse, vmax)
         levels = np.concatenate([levels_sub, levels_coarse])
     else:
         levels = np.arange(vmin, vmax + level_step / 2, level_step)
@@ -316,6 +324,7 @@ def main_process(settings: dict):
         level_step=settings["chl_level_step"],
         fine_sub_step=settings["chl_fine_sub_step"],
         fine_coarse_step=settings["chl_fine_coarse_step"],
+        fine_threshold=settings["chl_fine_threshold"],
         fine_levels=settings["chl_fine_levels"],
     )
 
@@ -329,7 +338,7 @@ def pipeline():
                 "depthmax": 30,
                 "run_suffix": "30m",
                 "chl_vmin": 0.1,
-                "chl_vmax": 5.0,
+                "chl_vmax": 10.5,
             }
         },
         {
@@ -338,7 +347,7 @@ def pipeline():
                 "depthmax": 6,
                 "run_suffix": "6m",
                 "chl_vmin": 0.1,
-                "chl_vmax": 5.0,
+                "chl_vmax": 10.5,
             }
         }
     ]
