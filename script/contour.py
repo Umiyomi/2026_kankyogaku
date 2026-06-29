@@ -8,8 +8,9 @@ from matplotlib.colors import BoundaryNorm
 
 PROJECT_ROOT = "/Users/umiyomi/Desktop/CodeWorks/Projects/2026kankyogakuTA"
 
-WAKASA_DATA_DIR = f"{PROJECT_ROOT}/data/20260624_雲龍丸乗船データ"
-MAGAKI_DATA_DIR = f"{PROJECT_ROOT}/data/AAQ2026/0621"
+DATA_DIR = f"{PROJECT_ROOT}/haihuyou/kankyogaku2026/data"
+WAKASA_DATA_DIR = f"{DATA_DIR}/wakasa"
+MAGAKI_DATA_DIR = f"{DATA_DIR}/magaki"
 OUTPUT_DIR = f"{PROJECT_ROOT}/output"
 
 # 20260624
@@ -19,51 +20,68 @@ ST3_LATITUDE = 35 + 31.848 / 60
 ST4_LATITUDE = 35 + 32.535 / 60
 
 # wakasa20260624調査データ
-WAKASA_ST1_PATH = f"{WAKASA_DATA_DIR}/202606241429_ASTD152-ALC-R02_0184_142943.Csv"
-WAKASA_ST2_PATH = f"{WAKASA_DATA_DIR}/202606241417_ASTD152-ALC-R02_0184_141756.Csv"
-WAKASA_ST3_PATH = f"{WAKASA_DATA_DIR}/202606241356_ASTD152-ALC-R02_0184_135631.Csv"
-WAKASA_ST4_PATH = f"{WAKASA_DATA_DIR}/202606241340_ASTD152-ALC-R02_0184_134017.Csv"
+WAKASA_0624_ST1_PATH = f"{WAKASA_DATA_DIR}/20260624/202606241429_ASTD152-ALC-R02_0184_142943.Csv"
+WAKASA_0624_ST2_PATH = f"{WAKASA_DATA_DIR}/20260624/202606241417_ASTD152-ALC-R02_0184_141756.Csv"
+WAKASA_0624_ST3_PATH = f"{WAKASA_DATA_DIR}/20260624/202606241356_ASTD152-ALC-R02_0184_135631.Csv"
+WAKASA_0624_ST4_PATH = f"{WAKASA_DATA_DIR}/20260624/202606241340_ASTD152-ALC-R02_0184_134017.Csv"
 
 # magaki20260621調査データ
-MAGAKI_ST1_PATH = f"{MAGAKI_DATA_DIR}/0621090317_AAQ177_SNo0636.csv"
-MAGAKI_ST2_PATH = f"{MAGAKI_DATA_DIR}/0621090953_AAQ177_SNo0636.csv"
-MAGAKI_ST3_PATH = f"{MAGAKI_DATA_DIR}/0621092021_AAQ177_SNo0636.csv"
-MAGAKI_ST4_PATH = f"{MAGAKI_DATA_DIR}/0621092708_AAQ177_SNo0636.csv"
-MAGAKI_ST5_PATH = f"{MAGAKI_DATA_DIR}/0621094533_AAQ177_SNo0636.csv"
-MAGAKI_ST6_PATH = f"{MAGAKI_DATA_DIR}/0621095111_AAQ177_SNo0636.csv"
+MAGAKI_0621_ST1_PATH = f"{MAGAKI_DATA_DIR}/20260621/0621090317_AAQ177_SNo0636.csv"
+MAGAKI_0621_ST2_PATH = f"{MAGAKI_DATA_DIR}/20260621/0621090953_AAQ177_SNo0636.csv"
+MAGAKI_0621_ST3_PATH = f"{MAGAKI_DATA_DIR}/20260621/0621092021_AAQ177_SNo0636.csv"
+MAGAKI_0621_ST4_PATH = f"{MAGAKI_DATA_DIR}/20260621/0621092708_AAQ177_SNo0636.csv"
+MAGAKI_0621_ST5_PATH = f"{MAGAKI_DATA_DIR}/20260621/0621094533_AAQ177_SNo0636.csv"
+MAGAKI_0621_ST6_PATH = f"{MAGAKI_DATA_DIR}/20260621/0621095111_AAQ177_SNo0636.csv"
 
-WAKASA_DATA_DICT = {
-    "St1": (WAKASA_ST1_PATH, ST1_LATITUDE),
-    "St2": (WAKASA_ST2_PATH, ST2_LATITUDE),
-    "St3": (WAKASA_ST3_PATH, ST3_LATITUDE),
-    "St4": (WAKASA_ST4_PATH, ST4_LATITUDE)
+# magaki20260627調査データ
+MAGAKI_0627_ST1_PATH = f"{MAGAKI_DATA_DIR}/20260627/0627085508_AAQ177_SNo0636.csv"
+MAGAKI_0627_ST2_PATH = f"{MAGAKI_DATA_DIR}/20260627/0627090223_AAQ177_SNo0636.csv"
+MAGAKI_0627_ST3_PATH = f"{MAGAKI_DATA_DIR}/20260627/0627091435_AAQ177_SNo0636.csv"
+MAGAKI_0627_ST4_PATH = f"{MAGAKI_DATA_DIR}/20260627/0627092047_AAQ177_SNo0636.csv"
+MAGAKI_0627_ST5_PATH = f"{MAGAKI_DATA_DIR}/20260627/0627093537_AAQ177_SNo0636.csv"
+MAGAKI_0627_ST6_PATH = f"{MAGAKI_DATA_DIR}/20260627/0627094142_AAQ177_SNo0636.csv"
+
+WAKASA_0624_DATA_DICT = {
+    "St1": (WAKASA_0624_ST1_PATH, 1),
+    "St2": (WAKASA_0624_ST2_PATH, 2),
+    "St3": (WAKASA_0624_ST3_PATH, 3),
+    "St4": (WAKASA_0624_ST4_PATH, 4)
 }
 
-MAGAKI_DATA_DICT = {
-    "St1": (MAGAKI_ST1_PATH, 6),
-    "St2": (MAGAKI_ST2_PATH, 5),
-    "St3": (MAGAKI_ST3_PATH, 4),
-    "St4": (MAGAKI_ST4_PATH, 3),
-    "St5": (MAGAKI_ST5_PATH, 2),
-    "St6": (MAGAKI_ST6_PATH, 1)
+MAGAKI_0621_DATA_DICT = {
+    "St1": (MAGAKI_0621_ST1_PATH, 1),
+    "St2": (MAGAKI_0621_ST2_PATH, 2),
+    "St3": (MAGAKI_0621_ST3_PATH, 3),
+    "St4": (MAGAKI_0621_ST4_PATH, 4),
+    "St5": (MAGAKI_0621_ST5_PATH, 5),
+    "St6": (MAGAKI_0621_ST6_PATH, 6)
+}
+
+MAGAKI_0627_DATA_DICT = {
+    "St1": (MAGAKI_0627_ST1_PATH, 1),
+    "St2": (MAGAKI_0627_ST2_PATH, 2),
+    "St3": (MAGAKI_0627_ST3_PATH, 3),
+    "St4": (MAGAKI_0627_ST4_PATH, 4),
+    "St5": (MAGAKI_0627_ST5_PATH, 5),
+    "St6": (MAGAKI_0627_ST6_PATH, 6)
 }
 
 # ===== 演習設定（主にここを変更する） =====
-ACTIVE_DATASET = "WAKASA"      # "WAKASA", "MAGAKI" から選ぶ
+ACTIVE_DATASET = "WAKASA_0624"      # "WAKASA_0624", "MAGAKI_0621", "MAGAKI_0627" から選ぶ
 USE_AUTO_LIMITS = False        # True: データの min/max を軸範囲に使う
 
 DATASET_SETTINGS = {
-    "WAKASA": {
-        "data_dict": WAKASA_DATA_DICT,
-        "output_csv": "concated_wakasa_contour_df.csv",
+    "WAKASA_0624": {
+        "data_dict": WAKASA_0624_DATA_DICT,
+        "output_csv": "concated_wakasa_0624_contour_df.csv",
         "save_dir": OUTPUT_DIR + "/wakasa/contour",
         "depthmax": 30,
-        "temp_vmin": 22.5,  "temp_vmax": 25.0,
-        "sal_vmin": 30.5,   "sal_vmax": 34,
-        "chl_vmin": 0,      "chl_vmax": 5.0,
-        "temp_title": "temp-wakasa_contour",
-        "sal_title": "sal-wakasa_contour",
-        "chl_title": "chl-wakasa_contour",
+        "temp_vmin": 21.0,  "temp_vmax": 25.0,
+        "sal_vmin": 29.5,   "sal_vmax": 34.3,
+        "chl_vmin": 0,      "chl_vmax": 10.0,
+        "temp_title": "temp-wakasa_0624_contour",
+        "sal_title": "sal-wakasa_0624_contour",
+        "chl_title": "chl-wakasa_0624_contour",
         "temp_level_step": 0.2,
         "sal_level_step": 0.2,
         "chl_level_step": 0.2,
@@ -71,17 +89,35 @@ DATASET_SETTINGS = {
         "chl_fine_coarse_step": 4.0,
         "chl_fine_levels": False,
     },
-    "MAGAKI": {
-        "data_dict": MAGAKI_DATA_DICT,
-        "output_csv": "concated_magaki_contour_df.csv",
+    "MAGAKI_0621": {
+        "data_dict": MAGAKI_0621_DATA_DICT,
+        "output_csv": "concated_magaki_0621_contour_df.csv",
         "save_dir": OUTPUT_DIR + "/magaki/contour",
-        "depthmax": 6,
-        "temp_vmin": 25.0,  "temp_vmax": 30.0,
-        "sal_vmin": 30.5,   "sal_vmax": 34,
-        "chl_vmin": 1.5,    "chl_vmax": 40,
-        "temp_title": "temp-magaki_contour",
-        "sal_title": "sal-magaki_contour",
-        "chl_title": "chl-magaki_contour",
+        "depthmax": 30,
+        "temp_vmin": 21.0,  "temp_vmax": 25.0,
+        "sal_vmin": 29.5,   "sal_vmax": 34.3,
+        "chl_vmin": 0,      "chl_vmax": 10.0,
+        "temp_title": "temp-magaki_0621_contour",
+        "sal_title": "sal-magaki_0621_contour",
+        "chl_title": "chl-magaki_0621_contour",
+        "temp_level_step": 0.2,
+        "sal_level_step": 0.2,
+        "chl_level_step": 0.2,
+        "chl_fine_sub_step": 0.1,
+        "chl_fine_coarse_step": 4.0,
+        "chl_fine_levels": False,
+    },
+    "MAGAKI_0627": {
+        "data_dict": MAGAKI_0627_DATA_DICT,
+        "output_csv": "concated_magaki_0627_contour_df.csv",
+        "save_dir": OUTPUT_DIR + "/magaki/contour",
+        "depthmax": 30,
+        "temp_vmin": 21.0,  "temp_vmax": 25.0,
+        "sal_vmin": 29.5,   "sal_vmax": 34.3,
+        "chl_vmin": 0,      "chl_vmax": 10.0,
+        "temp_title": "temp-magaki_0627_contour",
+        "sal_title": "sal-magaki_0627_contour",
+        "chl_title": "chl-magaki_0627_contour",
         "temp_level_step": 0.2,
         "sal_level_step": 0.2,
         "chl_level_step": 0.2,
@@ -141,7 +177,7 @@ def draw_contour_and_savefig(
     fine_sub_step: float = 0.1,
     fine_coarse_step: float = 4.0,
     fine_levels: bool = False,
-) -> None:
+    ) -> None:
     x = df[x_col].to_numpy()
     y = df[y_col].to_numpy() * -1
     z = df[value_col].to_numpy()
@@ -193,10 +229,12 @@ def draw_contour_and_savefig(
         fig.colorbar(contourf, ax=ax, label=label)
 
     ax.set_title(title, fontsize=20)
-    ax.set_xlabel('latitude')
+    ax.set_xlabel('station')
     ax.set_ylabel('depth [m]')
     ax.set_ylim(depthmax * -1, 0.0)
-    ax.set_xlim(x.min(), x.max())
+    # x軸はstationの番号で、整数刻み
+    ax.set_xticks(np.arange(1, len(np.unique(x)) + 1))
+    ax.set_xticklabels(np.arange(1, len(np.unique(x)) + 1))
 
     # 保存
     Path(save_dir).mkdir(parents=True, exist_ok=True)
@@ -206,15 +244,9 @@ def draw_contour_and_savefig(
     # plt.show()
 
 
-def main_process():
+def main_process(settings: dict):
 
-    settings = DATASET_SETTINGS[ACTIVE_DATASET]
     concated_df = concat_station_data(data_dict=settings["data_dict"])
-    Path(settings["save_dir"]).mkdir(parents=True, exist_ok=True)
-    concated_df.to_csv(f"{settings['save_dir']}/{settings['output_csv']}")
-
-    print(concated_df.min())
-    print(concated_df.max())
 
     # 水温プロット
     if USE_AUTO_LIMITS:
@@ -288,6 +320,41 @@ def main_process():
     )
 
 
+def pipeline():
+    
+    RUNS = [
+        {
+            "dataset": ["WAKASA_0624", "MAGAKI_0621", "MAGAKI_0627"],
+            "settings_overrides": {
+                "depthmax": 30,
+                "run_suffix": "30m",
+                "chl_vmin": 0.1,
+                "chl_vmax": 5.0,
+            }
+        },
+        {
+            "dataset": ["MAGAKI_0621", "MAGAKI_0627"],
+            "settings_overrides": {
+                "depthmax": 6,
+                "run_suffix": "6m",
+                "chl_vmin": 0.1,
+                "chl_vmax": 5.0,
+            }
+        }
+    ]
+    
+    for run in RUNS:
+        for dataset in run["dataset"]:
+            settings = DATASET_SETTINGS[dataset].copy()
+            settings.update(run["settings_overrides"])
+            settings["save_dir"] = f"{settings['save_dir']}/{settings['run_suffix']}"
+            Path(settings["save_dir"]).mkdir(parents=True, exist_ok=True)
+            settings["output_csv"] = f"{settings['output_csv']}_{settings['run_suffix']}"
+            settings["temp_title"] = f"{settings['temp_title']}_{settings['run_suffix']}"
+            settings["sal_title"] = f"{settings['sal_title']}_{settings['run_suffix']}"
+            settings["chl_title"] = f"{settings['chl_title']}_{settings['run_suffix']}"
+            main_process(settings)
+
 if __name__ == "__main__":
     # test()
-    main_process()
+    pipeline()
