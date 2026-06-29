@@ -8,7 +8,7 @@
 プログラミングではフォルダのことを**ディレクトリ**と呼びます。
 データがどこにあるかは**ディレクトリパス**で表現します。
 ```
-wakasa_st1 = "/content/drive/MyDrive/kankyogaku2026/data/20260624/202606241429_ASTD152-ALC-R02_0184_142943.Csv"
+wakasa_st1 = "/content/drive/MyDrive/kankyogaku2026/data/wakasa/20260624/202606241429_ASTD152-ALC-R02_0184_142943.Csv"
 ```
 プログラムにデータの在処を伝えるためには、ディレクトリパスを使います。
 ディレクトリパスを変数に代入しておきましょう。
@@ -41,7 +41,7 @@ print(dataframe)
 ```
 import pandas as pd
 
-wakasa_st1 = "/content/drive/MyDrive/kankyogaku2026/data/20260624/202606241429_ASTD152-ALC-R02_0184_142943.Csv"
+wakasa_st1 = "/content/drive/MyDrive/kankyogaku2026/data/wakasa/20260624/202606241429_ASTD152-ALC-R02_0184_142943.Csv"
 
 df = pd.read_csv(wakasa_st1)
 print(df)
@@ -120,7 +120,7 @@ def load_data(csv_file_path):
 
 これで他のステーションのデータも簡単に読み込めます
 ```
-wakasa_st2 = "/content/drive/MyDrive/kankyogaku2026/data/20260624/202606241417_ASTD152-ALC-R02_0184_141756.Csv"
+wakasa_st2 = "/content/drive/MyDrive/kankyogaku2026/data/wakasa/20260624/202606241417_ASTD152-ALC-R02_0184_141756.Csv"
 
 df2 = load_data(wakasa_st2)
 print(df2)
