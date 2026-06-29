@@ -23,6 +23,10 @@ WAKASA_0624_ST1_PATH = f"{WAKASA_DATA_DIR}/20260624/202606241429_ASTD152-ALC-R02
 WAKASA_0624_ST2_PATH = f"{WAKASA_DATA_DIR}/20260624/202606241417_ASTD152-ALC-R02_0184_141756.Csv"
 WAKASA_0624_ST3_PATH = f"{WAKASA_DATA_DIR}/20260624/202606241356_ASTD152-ALC-R02_0184_135631.Csv"
 WAKASA_0624_ST4_PATH = f"{WAKASA_DATA_DIR}/20260624/202606241340_ASTD152-ALC-R02_0184_134017.Csv"
+WAKASA_0624_ST1_PATH = f"{WAKASA_DATA_DIR}/20260624/202606241429_ASTD152-ALC-R02_0184_142943.Csv"
+WAKASA_0624_ST2_PATH = f"{WAKASA_DATA_DIR}/20260624/202606241417_ASTD152-ALC-R02_0184_141756.Csv"
+WAKASA_0624_ST3_PATH = f"{WAKASA_DATA_DIR}/20260624/202606241356_ASTD152-ALC-R02_0184_135631.Csv"
+WAKASA_0624_ST4_PATH = f"{WAKASA_DATA_DIR}/20260624/202606241340_ASTD152-ALC-R02_0184_134017.Csv"
 
 # magaki20260621調査データ
 MAGAKI_0621_ST1_PATH = f"{MAGAKI_DATA_DIR}/20260621/0621090317_AAQ177_SNo0636.csv"
@@ -193,15 +197,9 @@ def draw_profile_and_savefig(df: pd.DataFrame, x_col: str, y_col: str, title: st
     # plt.show()
 
 
-def main_process():
+def main_process(settings: dict):
 
-    settings = DATASET_SETTINGS[ACTIVE_DATASET]
     concated_df = concat_station_data(data_dict=settings["data_dict"])
-    Path(settings["save_dir"]).mkdir(parents=True, exist_ok=True)
-    concated_df.to_csv(f"{settings['save_dir']}/{settings['output_csv']}")
-
-    print(concated_df.min())
-    print(concated_df.max())
 
     # 水温プロット
     if USE_AUTO_LIMITS:
@@ -263,7 +261,41 @@ def main_process():
         save_dir=settings["save_dir"],
     )
 
+def pipeline():
+    
+    RUNS = [
+        {
+            "dataset": ["WAKASA_0624", "MAGAKI_0621", "MAGAKI_0627"],
+            "settings_overrides": {
+                "depthmax": 30,
+                "run_suffix": "30m",
+                "chl_vmin": 0,
+                "chl_vmax": 5.0,
+            }
+        },
+        {
+            "dataset": ["MAGAKI_0621", "MAGAKI_0627"],
+            "settings_overrides": {
+                "depthmax": 6,
+                "run_suffix": "6m",
+                "chl_vmin": 0,
+                "chl_vmax": 5.0,
+            }
+        }
+    ]
+    
+    for run in RUNS:
+        for dataset in run["dataset"]:
+            settings = DATASET_SETTINGS[dataset].copy()
+            settings.update(run["settings_overrides"])
+            settings["save_dir"] = f"{settings['save_dir']}/{settings['run_suffix']}"
+            Path(settings["save_dir"]).mkdir(parents=True, exist_ok=True)
+            settings["output_csv"] = f"{settings['output_csv']}_{settings['run_suffix']}"
+            settings["temp_title"] = f"{settings['temp_title']}_{settings['run_suffix']}"
+            settings["sal_title"] = f"{settings['sal_title']}_{settings['run_suffix']}"
+            settings["chl_title"] = f"{settings['chl_title']}_{settings['run_suffix']}"
+            main_process(settings)
 
 if __name__ == "__main__":
     # test()
-    main_process()
+    pipeline()

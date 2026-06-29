@@ -41,28 +41,28 @@ MAGAKI_0627_ST5_PATH = f"{MAGAKI_DATA_DIR}/20260627/0627093537_AAQ177_SNo0636.cs
 MAGAKI_0627_ST6_PATH = f"{MAGAKI_DATA_DIR}/20260627/0627094142_AAQ177_SNo0636.csv"
 
 WAKASA_0624_DATA_DICT = {
-    "St1": (WAKASA_0624_ST1_PATH, ST1_LATITUDE),
-    "St2": (WAKASA_0624_ST2_PATH, ST2_LATITUDE),
-    "St3": (WAKASA_0624_ST3_PATH, ST3_LATITUDE),
-    "St4": (WAKASA_0624_ST4_PATH, ST4_LATITUDE)
+    "St1": (WAKASA_0624_ST1_PATH, 1),
+    "St2": (WAKASA_0624_ST2_PATH, 2),
+    "St3": (WAKASA_0624_ST3_PATH, 3),
+    "St4": (WAKASA_0624_ST4_PATH, 4)
 }
 
 MAGAKI_0621_DATA_DICT = {
-    "St1": (MAGAKI_0621_ST1_PATH, 6),
-    "St2": (MAGAKI_0621_ST2_PATH, 5),
-    "St3": (MAGAKI_0621_ST3_PATH, 4),
-    "St4": (MAGAKI_0621_ST4_PATH, 3),
-    "St5": (MAGAKI_0621_ST5_PATH, 2),
-    "St6": (MAGAKI_0621_ST6_PATH, 1)
+    "St1": (MAGAKI_0621_ST1_PATH, 1),
+    "St2": (MAGAKI_0621_ST2_PATH, 2),
+    "St3": (MAGAKI_0621_ST3_PATH, 3),
+    "St4": (MAGAKI_0621_ST4_PATH, 4),
+    "St5": (MAGAKI_0621_ST5_PATH, 5),
+    "St6": (MAGAKI_0621_ST6_PATH, 6)
 }
 
 MAGAKI_0627_DATA_DICT = {
-    "St1": (MAGAKI_0627_ST1_PATH, 6),
-    "St2": (MAGAKI_0627_ST2_PATH, 5),
-    "St3": (MAGAKI_0627_ST3_PATH, 4),
-    "St4": (MAGAKI_0627_ST4_PATH, 3),
-    "St5": (MAGAKI_0627_ST5_PATH, 2),
-    "St6": (MAGAKI_0627_ST6_PATH, 1)
+    "St1": (MAGAKI_0627_ST1_PATH, 1),
+    "St2": (MAGAKI_0627_ST2_PATH, 2),
+    "St3": (MAGAKI_0627_ST3_PATH, 3),
+    "St4": (MAGAKI_0627_ST4_PATH, 4),
+    "St5": (MAGAKI_0627_ST5_PATH, 5),
+    "St6": (MAGAKI_0627_ST6_PATH, 6)
 }
 
 # ===== 演習設定（主にここを変更する） =====
@@ -176,7 +176,7 @@ def draw_contour_and_savefig(
     fine_sub_step: float = 0.1,
     fine_coarse_step: float = 4.0,
     fine_levels: bool = False,
-) -> None:
+    ) -> None:
     x = df[x_col].to_numpy()
     y = df[y_col].to_numpy() * -1
     z = df[value_col].to_numpy()
@@ -228,10 +228,12 @@ def draw_contour_and_savefig(
         fig.colorbar(contourf, ax=ax, label=label)
 
     ax.set_title(title, fontsize=20)
-    ax.set_xlabel('latitude')
+    ax.set_xlabel('station')
     ax.set_ylabel('depth [m]')
     ax.set_ylim(depthmax * -1, 0.0)
-    ax.set_xlim(x.min(), x.max())
+    # x軸はstationの番号で、整数刻み
+    ax.set_xticks(np.arange(1, len(np.unique(x)) + 1))
+    ax.set_xticklabels(np.arange(1, len(np.unique(x)) + 1))
 
     # 保存
     Path(save_dir).mkdir(parents=True, exist_ok=True)
@@ -241,15 +243,9 @@ def draw_contour_and_savefig(
     # plt.show()
 
 
-def main_process():
+def main_process(settings: dict):
 
-    settings = DATASET_SETTINGS[ACTIVE_DATASET]
     concated_df = concat_station_data(data_dict=settings["data_dict"])
-    Path(settings["save_dir"]).mkdir(parents=True, exist_ok=True)
-    concated_df.to_csv(f"{settings['save_dir']}/{settings['output_csv']}")
-
-    print(concated_df.min())
-    print(concated_df.max())
 
     # 水温プロット
     if USE_AUTO_LIMITS:
@@ -323,6 +319,41 @@ def main_process():
     )
 
 
+def pipeline():
+    
+    RUNS = [
+        {
+            "dataset": ["WAKASA_0624", "MAGAKI_0621", "MAGAKI_0627"],
+            "settings_overrides": {
+                "depthmax": 30,
+                "run_suffix": "30m",
+                "chl_vmin": 0.1,
+                "chl_vmax": 5.0,
+            }
+        },
+        {
+            "dataset": ["MAGAKI_0621", "MAGAKI_0627"],
+            "settings_overrides": {
+                "depthmax": 6,
+                "run_suffix": "6m",
+                "chl_vmin": 0.1,
+                "chl_vmax": 5.0,
+            }
+        }
+    ]
+    
+    for run in RUNS:
+        for dataset in run["dataset"]:
+            settings = DATASET_SETTINGS[dataset].copy()
+            settings.update(run["settings_overrides"])
+            settings["save_dir"] = f"{settings['save_dir']}/{settings['run_suffix']}"
+            Path(settings["save_dir"]).mkdir(parents=True, exist_ok=True)
+            settings["output_csv"] = f"{settings['output_csv']}_{settings['run_suffix']}"
+            settings["temp_title"] = f"{settings['temp_title']}_{settings['run_suffix']}"
+            settings["sal_title"] = f"{settings['sal_title']}_{settings['run_suffix']}"
+            settings["chl_title"] = f"{settings['chl_title']}_{settings['run_suffix']}"
+            main_process(settings)
+
 if __name__ == "__main__":
     # test()
-    main_process()
+    pipeline()
