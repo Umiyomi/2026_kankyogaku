@@ -59,7 +59,7 @@ print(answer2)
 
 
 # 引き算関数も定義してみる
-def hikizan(a, b)
+def hikizan(a, b):
     result = a - b
     return result
 
