@@ -12,3 +12,7 @@ __pycache__/
 /haihuyou/
 kanpe.md
 sandbox.py
+
+./docs/02_introduction_to_data_processing.md
+./docs/03_introducting_draw_graph.md
+./docs/04_requirements_definition.md
